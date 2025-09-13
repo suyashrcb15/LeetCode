@@ -1,23 +1,23 @@
 class Solution {
+
     public int maxFreqSum(String s) {
-        int max=0;
-        int max1=0;
-        HashMap<Character,Integer> res=new HashMap<>();
-        HashMap<Character,Integer> res1=new HashMap<>();
-        for(int i=0;i<s.length();i++){
-            if(s.charAt(i)=='a' || s.charAt(i)=='e' || s.charAt(i)=='i' || s.charAt(i)=='o' || s.charAt(i)=='u'){
-                res.put(s.charAt(i),res.getOrDefault(s.charAt(i),0)+1);
+        Map<Character, Integer> mp = new HashMap<>();
+        for (char ch : s.toCharArray()) {
+            mp.put(ch, mp.getOrDefault(ch, 0) + 1);
+        }
+        int vowel = 0;
+        int consonant = 0;
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            if (isVowel(ch)) {
+                vowel = Math.max(vowel, mp.getOrDefault(ch, 0));
+            } else {
+                consonant = Math.max(consonant, mp.getOrDefault(ch, 0));
             }
-            else{
-                res1.put(s.charAt(i),res1.getOrDefault(s.charAt(i),0)+1);
-            }
         }
-        for (int val:res.values()){
-            max=Math.max(max,val);
-        }
-        for (int val:res1.values()){
-            max1=Math.max(max1,val);
-        }
-        return max+max1;
+        return vowel + consonant;
+    }
+
+    private boolean isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
     }
 }
