@@ -10,3 +10,4 @@ class Solution{
         return (long)(max-min)*k;
     }
 }
+
